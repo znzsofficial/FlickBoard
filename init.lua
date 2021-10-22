@@ -1,0 +1,20 @@
+--名称
+appname="FlickBoard"
+--版本号
+appver="1.5"
+--版本
+appcode="6"
+--SDK
+appsdk="15"
+--包名
+packagename="com.znzs.dygd"
+--调试模式
+debugmode=false
+--应用权限
+user_permission={
+  "VIBRATE",
+}
+--跳过编译
+skip_compilation={
+
+}
