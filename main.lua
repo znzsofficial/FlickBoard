@@ -3,12 +3,7 @@ import "android.app.*"
 import "android.os.*"
 import "android.widget.*"
 import "android.view.*"
-import "android.net.Uri"
 import "android.content.Intent"
-import "android.view.WindowManager"
-import "android.app.AlertDialog"
-import "com.androlua.LuaDialog"
-import "android.view.View"
 import "com.nirenr.Color"
 import "android.graphics.Color"
 import "android.text.InputType"
@@ -28,7 +23,7 @@ activity.setTheme(android.R.style.Theme_Material_Light_NoActionBar)
 activity.setContentView(loadlayout(layout))
 
 --横屏
-activity.setRequestedOrientation(0);
+--activity.setRequestedOrientation(0);
 
 
 --状态栏沉浸透明
@@ -41,18 +36,18 @@ window.setStatusBarColor(Color.TRANSPARENT)
 
 this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
 
-function 播放(控件名,链接)
-  控件名 = MediaPlayer()
-  控件名.reset()
-  控件名.setDataSource(链接)
-  控件名.prepare()
-  控件名.start()
+function 播放(链接)
+  local mPlay = MediaPlayer()
+  mPlay.reset()
+  mPlay.setDataSource(链接)
+  mPlay.prepare()
+  mPlay.start()
   --内存回收
   collectgarbage("collect")
 end
 
 
-function 震(时长)
+function Vibrate(时长)
   activity.getSystemService(Context.VIBRATOR_SERVICE).vibrate(long{0,时长},-1)
 end
 
@@ -60,13 +55,13 @@ function 震动()
   if File("/data/data/"..activity.getPackageName().."/st0").exists() then
   end
   if File("/data/data/"..activity.getPackageName().."/st1").exists() then
-    震(6)
+    Vibrate(6)
   end
   if File("/data/data/"..activity.getPackageName().."/st2").exists() then
-    震(14)
+    Vibrate(14)
   end
   if File("/data/data/"..activity.getPackageName().."/st3").exists() then
-    震(18)
+    Vibrate(18)
   end
 end
 
@@ -157,19 +152,19 @@ end
 
 sj0.onClick=function()
   震动()
-  播放(m0,activity.getLuaDir() .. "/1.mp3")
+  播放(activity.getLuaDir() .. "/1.mp3")
 end
 sj1.onClick=function()
   震动()
-  播放(m1,activity.getLuaDir() .. "/2.mp3")
+  播放(activity.getLuaDir() .. "/2.mp3")
 end
 sj2.onClick=function()
   震动()
-  播放(m2,activity.getLuaDir() .. "/3.mp3")
+  播放(activity.getLuaDir() .. "/3.mp3")
 end
 sj3.onClick=function()
   震动()
-  播放(m3,activity.getLuaDir() .. "/4.mp3")
+  播放(activity.getLuaDir() .. "/4.mp3")
 end
 
 
@@ -178,19 +173,19 @@ end
 
 sj10.onClick=function()
   震动()
-  播放(m10,activity.getLuaDir() .. "/5.mp3")
+  播放(activity.getLuaDir() .. "/5.mp3")
 end
 sj11.onClick=function()
   震动()
-  播放(m11,activity.getLuaDir() .. "/6.mp3")
+  播放(activity.getLuaDir() .. "/6.mp3")
 end
 sj12.onClick=function()
   震动()
-  播放(m12,activity.getLuaDir() .. "/7.mp3")
+  播放(activity.getLuaDir() .. "/7.mp3")
 end
 sj13.onClick=function()
   震动()
-  播放(m13,activity.getLuaDir() .. "/8.mp3")
+  播放(activity.getLuaDir() .. "/8.mp3")
 end
 
 
@@ -199,25 +194,25 @@ end
 
 sj20.onClick=function()
   震动()
-  播放(m20,activity.getLuaDir() .. "/9.mp3")
+  播放(activity.getLuaDir() .. "/9.mp3")
 end
 sj21.onClick=function()
   震动()
-  播放(m21,activity.getLuaDir() .. "/10.mp3")
+  播放(activity.getLuaDir() .. "/10.mp3")
 end
 sj22.onClick=function()
   震动()
-  播放(m22,activity.getLuaDir() .. "/11.mp3")
+  播放(activity.getLuaDir() .. "/11.mp3")
 end
 sj23.onClick=function()
   震动()
-  播放(m23,activity.getLuaDir() .. "/12.mp3")
+  播放(activity.getLuaDir() .. "/12.mp3")
 end
 
 
 
 
-
+--太智障了这也
 mb1.onClick=function()
   File("/data/data/"..activity.getPackageName().."/st0").mkdirs()
   os.execute("rm -r /data/data/"..activity.getPackageName().."/st1")
