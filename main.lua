@@ -72,8 +72,6 @@ window.setNavigationBarColor(surfaceVar)
 --MaterialToolbar比普通Toolbar更强大的地方在于，它可以脱离Activity使用
 local addToolbarMenu=lambda a,b,c,name:toolbar.menu.add(a,b,c,name)
 addToolbarMenu(0,0,0,"刷新")
---这里展示了标准lua没有的AndroLua+专属语法lambda(匿名函数)
---可以大幅简化重复函数调用。上面的底栏也是可以用lambda添加的。
 
 --顶栏菜单点击监听
 import "androidx.appcompat.widget.Toolbar$OnMenuItemClickListener"
@@ -99,7 +97,6 @@ function ApplicationAuthority()
   local mArray = mAppPermissions.toArray(String[size])
   activity.requestPermissions(mArray,0)
 end
-
 ApplicationAuthority()
 
 --权限申请回调
@@ -109,10 +106,9 @@ end
 
 
 --横屏
---activity.setRequestedOrientation(0);
+--activity.setRequestedOrientation(0)
 
-
-function playAudio(file,play)
+function playAudio(file,player)
   player = MediaPlayer()
   .reset()
   .setDataSource(activity.getLuaDir() .. "/res/"..file..".mp3")
