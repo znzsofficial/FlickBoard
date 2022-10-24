@@ -69,6 +69,24 @@ window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
 window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
 window.setNavigationBarColor(surfaceVar)
 
+--MaterialToolbar比普通Toolbar更强大的地方在于，它可以脱离Activity使用
+local addToolbarMenu=lambda a,b,c,name:toolbar.menu.add(a,b,c,name)
+addToolbarMenu(0,0,0,"刷新")
+--这里展示了标准lua没有的AndroLua+专属语法lambda(匿名函数)
+--可以大幅简化重复函数调用。上面的底栏也是可以用lambda添加的。
+
+--顶栏菜单点击监听
+import "androidx.appcompat.widget.Toolbar$OnMenuItemClickListener"
+toolbar.setOnMenuItemClickListener(OnMenuItemClickListener{
+  onMenuItemClick=function(item)
+  switch item.getItemId() do
+     case 0
+      collectgarbage("collect")
+      activity.recreate()
+    end
+  end
+})
+
 
 --动态申请所有权限
 function ApplicationAuthority()
@@ -94,7 +112,7 @@ end
 --activity.setRequestedOrientation(0);
 
 
-function playAudio(file,player)
+function playAudio(file,play)
   player = MediaPlayer()
   .reset()
   .setDataSource(activity.getLuaDir() .. "/res/"..file..".mp3")
@@ -109,9 +127,9 @@ function playAudio(file,player)
   collectgarbage("collect")
   --print(tostring(collectgarbage("count")))
 end
-
-
 collectgarbage("collect")
+
+
 
 --下面是复用性为0的代码
 
