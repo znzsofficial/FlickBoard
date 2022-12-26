@@ -3,4 +3,4 @@
 
 稍微重置了一下
 
-换SoundPool应该会好很多
+使用SoundPool+GridView
