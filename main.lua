@@ -8,7 +8,10 @@ import "android.media.SoundPool"
 import "com.google.android.material.button.MaterialButton"
 import "layout"
 
-activity.setTheme(R.style.Theme_ReOpenLua_MaterialComponent)
+do
+  local _ENV={activity=this,style=luajava.bindClass'com.google.android.material.R$style'}
+  activity.theme=style.Theme_MaterialComponents_DayNight
+end
 activity.setContentView(loadlayout(layout))
 
 local list={{{'1','1'},{'2','2'},{'3','3'},{'4','4'},{'5','5'},{'6','6'}},{{'7','7'},{'8','+1'},{'9','+2'},{'10','+3'},{'11','+4'},{'12','+5'}}}
@@ -41,6 +44,7 @@ for k,v ipairs(list[1])
       text=v[2],
       onClick=function()
         sp.play(v[3],1,1,1,0,1)
+collectgarbage("collect")
       end
     }
   }
